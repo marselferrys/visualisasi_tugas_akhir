@@ -1,0 +1,4 @@
+streamlit
+numpy
+pandas
+tensorflow  # Tambahkan ini jika Anda memuat model .h5 asli
