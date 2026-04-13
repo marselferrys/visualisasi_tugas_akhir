@@ -23,7 +23,7 @@ if tombol_analisis and nama_input:
     st.markdown(f"### Menganalisis nama: **{nama_input}**")
     
     col1, col2 = st.columns([1, 2])
-    MAX_LEN = 30
+    MAX_LEN = 25
     
     # ================= LAYER 1 =================
     with col1:
