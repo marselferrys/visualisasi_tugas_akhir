@@ -34,15 +34,38 @@ if tombol_analisis and nama_input:
     st.markdown("---")
     
     with col1:
-        st.info("📍 **Layer 2: Character Embedding (128 Dim)**\n\nMengubah setiap indeks angka menjadi vektor padat (128 nilai desimal) agar model memahami kedekatan karakter.")
+        st.info("📍 **Layer 1: Input & Padding**\n\nMemecah string menjadi karakter, mengubahnya menjadi indeks angka (sesuai leksikon), dan memastikan panjang array tepat 30 (Padding/Truncating).")
     with col2:
-        # Membuat matriks dummy berukuran (Panjang Nama x 128)
-        dummy_embedding = np.random.randn(len(chars), 128)
-        st.write(f"Bentuk Matriks: `{len(chars)} karakter × 128 dimensi`")
-        # Menampilkan sebagian kecil matriks agar tidak penuh layar
-        st.dataframe(pd.DataFrame(dummy_embedding).head(len(chars)).iloc[:, :10].style.background_gradient(cmap='Blues'))
-        st.caption("*Menampilkan 10 kolom pertama dari 128 dimensi")
-        time.sleep(1.5)
+        # 1. Definisi Kamus Leksikon (Sesuai dengan gambar dari model BiLSTM Anda)
+        char_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 
+                     'j': 10, 'k': 11, 'l': 12, 'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 
+                     'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23, 'x': 24, 'y': 25, 
+                     'z': 26, ' ': 27, '-': 28, "'": 29}
+        MAX_LEN = 30
+
+        # 2. Tokenisasi (Ubah teks ke lowercase karena kamus menggunakan huruf kecil)
+        chars = list(nama_input.lower())
+        
+        # Ambil nilai dari kamus, jika karakter aneh/tidak ada (OOV), berikan nilai 0 sementara
+        indeks = [char_dict.get(c, 0) for c in chars]
+
+        # 3. Logika Truncating (Potong) dan Padding (Tambah 0)
+        if len(indeks) > MAX_LEN:
+            # Jika nama lebih dari 30 huruf, potong paksa
+            indeks_pad = indeks[:MAX_LEN]
+            chars_pad = chars[:MAX_LEN]
+        else:
+            # Jika kurang dari 30 huruf, tambahkan angka 0 dan label 'PAD' di akhir
+            selisih = MAX_LEN - len(indeks)
+            indeks_pad = indeks + [0] * selisih
+            chars_pad = chars + ['PAD'] * selisih
+
+        st.write(f"**Panjang Nama Asli:** {len(chars)} karakter")
+        st.write("**Karakter (Padded):**", chars_pad)
+        st.write(f"**Indeks Numerik (Padded {MAX_LEN}):**", indeks_pad)
+        
+        st.progress(100)
+        time.sleep(1) # Efek delay agar interaktif
         
     st.markdown("---")
     
