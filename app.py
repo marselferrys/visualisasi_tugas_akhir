@@ -11,7 +11,7 @@ st.subheader("Klasifikasi Gender Berdasarkan Nama (Studi Kasus: Indonesia)")
 st.markdown("---")
 
 # Input Nama dari Pengguna
-nama_input = st.text_input("Masukkan Nama untuk Dianalisis:", value="DWI").upper()
+nama_input = st.text_input("Masukkan Nama untuk Dianalisis:", value="DWI").lower()
 tombol_analisis = st.button("🚀 Simulasikan Perjalanan Data")
 
 # Fungsi untuk mewarnai nilai 0 (Dropout) di DataFrame
