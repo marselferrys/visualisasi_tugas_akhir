@@ -100,7 +100,7 @@ if tombol_analisis and nama_input:
         st.info("📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh 25 karakter dan mencomot nilai fitur yang paling dominan/kuat saja.")
     with col2:
         dummy_pooling = np.random.rand(1, 256)
-        st.write("Bentuk Array setelah Reduksi: `1 × 256`")
+        st.write("Bentuk Array setelah Reduksi Pooling Layer: `1 × 256`")
         st.bar_chart(dummy_pooling[0][:]) 
         time.sleep(1)
         
