@@ -58,7 +58,7 @@ if tombol_analisis and nama_input:
     with col2:
         dummy_embedding = np.random.randn(MAX_LEN, 128)
         st.write(f"Bentuk Matriks: `{MAX_LEN} karakter × 128 dimensi`")
-        st.dataframe(pd.DataFrame(dummy_embedding).iloc[:, :10].style.background_gradient(cmap='Blues'), height=200)
+        st.dataframe(pd.DataFrame(dummy_embedding).iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
         st.caption("*Menampilkan 10 kolom pertama dari 128 dimensi.")
         time.sleep(1)
         
@@ -84,24 +84,24 @@ if tombol_analisis and nama_input:
     with col2:
         st.write(f"Bentuk Matriks: `{MAX_LEN} × 256`")
         # Membuat matriks dummy 10x10 sebagai ilustrasi
-        dummy_bilstm_out = np.random.rand(10, 10) 
+        dummy_bilstm_out = np.random.rand(MAX_LEN, 256) 
         # Matikan 30% sel secara acak
-        mask_dropout_1 = np.random.rand(10, 10) > 0.3 
+        mask_dropout_1 = np.random.rand(MAX_LEN, 256) > 0.3 
         dummy_dropout_1 = dummy_bilstm_out * mask_dropout_1
 
         st.dataframe(pd.DataFrame(dummy_dropout_1).style.map(highlight_dropout), height=200)
-        st.caption("*Cuplikan matriks 10x10. Sel berlatar merah (0.000) adalah neuron yang dimatikan.*")
+        st.caption("*Cuplikan matriks 25x256. Sel berlatar merah (0.000) adalah neuron yang dimatikan.*")
         time.sleep(1)
 
     st.markdown("---")
     
     # ================= LAYER 5 =================
     with col1:
-        st.info("📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh 30 karakter dan mencomot nilai fitur yang paling dominan/kuat saja.")
+        st.info("📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh 25 karakter dan mencomot nilai fitur yang paling dominan/kuat saja.")
     with col2:
         dummy_pooling = np.random.rand(1, 256)
         st.write("Bentuk Array setelah Reduksi: `1 × 256`")
-        st.bar_chart(dummy_pooling[0][:50]) 
+        st.bar_chart(dummy_pooling[0][:]) 
         time.sleep(1)
         
     st.markdown("---")
