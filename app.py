@@ -59,7 +59,7 @@ if tombol_analisis and nama_input:
         dummy_embedding = np.random.randn(MAX_LEN, 128)
         st.write(f"Bentuk Matriks: `{MAX_LEN} karakter × 128 dimensi`")
         st.dataframe(pd.DataFrame(dummy_embedding).iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
-        st.caption("*Menampilkan 10 kolom pertama dari 128 dimensi.")
+        st.caption("*Menampilkan  25 x 128 dimensi.")
         time.sleep(1)
         
     st.markdown("---")
@@ -84,11 +84,12 @@ if tombol_analisis and nama_input:
     with col2:
         st.write(f"Bentuk Matriks: `{MAX_LEN} × 256`")
         # Membuat matriks dummy 10x10 sebagai ilustrasi
-        dummy_bilstm_out = np.random.rand(MAX_LEN, 256) 
+        dummy_bilstm_out = np.random.rand(MAX_LEN, 256)
+        st.dataframe(pd.DataFrame(dummy_bilstm_out).style.map(cmap='Blues'), height=200)
         # Matikan 30% sel secara acak
         mask_dropout_1 = np.random.rand(MAX_LEN, 256) > 0.3 
         dummy_dropout_1 = dummy_bilstm_out * mask_dropout_1
-
+        
         st.dataframe(pd.DataFrame(dummy_dropout_1).style.map(highlight_dropout), height=200)
         st.caption("*Cuplikan matriks 25x256. Sel berlatar merah (0.000) adalah neuron yang dimatikan.*")
         time.sleep(1)
