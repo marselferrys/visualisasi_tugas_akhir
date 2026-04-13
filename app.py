@@ -82,16 +82,21 @@ if tombol_analisis and nama_input:
     with col1:
         st.error("📍 **Layer 4: Dropout (30%)**\n\nLapisan regularisasi pertama. Menonaktifkan 30% koneksi neuron secara acak untuk mencegah model menghafal data (Overfitting).")
     with col2:
-        st.write(f"Bentuk Matriks: `{MAX_LEN} × 256`")
-        # Membuat matriks dummy 10x10 sebagai ilustrasi
+        st.write(f"Bentuk Matriks Hasil BiLSTM layer: `{MAX_LEN} × 256`")
+        
+        # Membuat matriks dummy sesuai dimensi asli
         dummy_bilstm_out = np.random.rand(MAX_LEN, 256)
-        st.dataframe(pd.DataFrame(dummy_bilstm_out).style.map(cmap='Blues'), height=200)
+        
+        # PERBAIKAN DI SINI: Gunakan background_gradient, bukan map
+        st.dataframe(pd.DataFrame(dummy_bilstm_out).style.background_gradient(cmap='Blues'), height=200)
+        
         # Matikan 30% sel secara acak
+        st.write(f"Bentuk Matriks setelah dropout layer 1: `{MAX_LEN} × 256`")
         mask_dropout_1 = np.random.rand(MAX_LEN, 256) > 0.3 
         dummy_dropout_1 = dummy_bilstm_out * mask_dropout_1
         
         st.dataframe(pd.DataFrame(dummy_dropout_1).style.map(highlight_dropout), height=200)
-        st.caption("*Cuplikan matriks 25x256. Sel berlatar merah (0.000) adalah neuron yang dimatikan.*")
+        st.caption(f"*Cuplikan matriks {MAX_LEN}x256. Sel berlatar merah (0.000) adalah neuron yang dimatikan.*")
         time.sleep(1)
 
     st.markdown("---")
