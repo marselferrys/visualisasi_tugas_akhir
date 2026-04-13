@@ -6,7 +6,7 @@ import time
 # Konfigurasi Halaman Web
 st.set_page_config(page_title="Visualisasi BiLSTM - Marchel", layout="wide")
 
-st.title("🧠 Simulator Arsitektur Hybrid MLE-BiLSTM")
+st.title("🧠 Simulator Arsitektur BiLSTM")
 st.subheader("Klasifikasi Gender Berdasarkan Nama (Studi Kasus: Indonesia)")
 st.markdown("---")
 
