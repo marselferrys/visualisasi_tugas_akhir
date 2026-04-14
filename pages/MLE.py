@@ -10,10 +10,6 @@ if 'nama_input' not in st.session_state:
 st.title("📊 Simulasi Maximum Likelihood Estimation (MLE)")
 st.markdown("---")
 
-# Mengambil memori nama dari session_state
-nama = st.text_input("Masukkan Nama Lengkap:", value=st.session_state.nama_input).lower()
-st.session_state.nama_input = nama # Update memori jika ada ketikan baru
-
 # Fungsi untuk membaca dan menghitung skor dari Excel
 @st.cache_data
 def load_mle_database():
@@ -50,7 +46,7 @@ st.markdown("---")
 # Memuat database dari excel secara efisien (hanya dibaca 1 kali)
 tabel_frekuensi = load_mle_database()
 
-nama = st.text_input("Masukkan Nama Lengkap:", value=st.session_state.nama_input).upper()
+nama = st.text_input("Masukkan Nama Lengkap:", value=st.session_state.nama_input).lower()
 st.session_state.nama_input = nama
 
 if st.button("🧮 Simulasikan Algoritma MLE"):
