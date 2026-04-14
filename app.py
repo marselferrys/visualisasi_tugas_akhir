@@ -72,7 +72,7 @@ if tombol_analisis and nama_input:
         st.info("📍 **Layer 2: Character Embedding**\n\nMengubah setiap karakter menjadi representasi vektor padat berdimensi 128.")
     with col2:
         dummy_embedding = np.random.randn(MAX_LEN, 128)
-        st.write(f"Bentuk Matriks: `{MAX_LEN} karakter × 128 dimensi`")
+        st.write(f"Bentuk Matriks dari Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
         st.dataframe(pd.DataFrame(dummy_embedding).iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
         st.caption("*Menampilkan  25 x 128 dimensi.")
         time.sleep(1)
@@ -83,6 +83,7 @@ if tombol_analisis and nama_input:
     with col1:
         st.warning("📍 **Layer 3: Bidirectional LSTM**\n\nMemproses matriks dari dua arah secara paralel (maju dan mundur). Menghasilkan representasi hidden state 256 dimensi.")
     with col2:
+        st.write("BiLSTM Layer")
         st.write("🔄 **Proses Forward & Backward berjalan...**")
         progress_bar = st.progress(0)
         for i in range(100):
