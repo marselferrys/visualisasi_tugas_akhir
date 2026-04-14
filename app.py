@@ -142,15 +142,39 @@ if tombol_analisis and nama_input:
     with col1:
         st.success("📍 **Layer 8: Output Layer (Sigmoid)**\n\nMemampatkan ke-64 sisa fitur menjadi 1 neuron tunggal. Menghasilkan probabilitas 0 hingga 1.")
     with col2:
-        st.write("Menjatuhkan Vonis...")
-        time.sleep(1)
-        probabilitas = np.random.uniform(0.1, 0.99)
-        prediksi = "Perempuan 👩" if probabilitas > 0.5 else "Laki-laki 👨"
+        st.write("Hasil Klasifikasi...")
         
-        st.metric(label="Skor Probabilitas (Sigmoid)", value=f"{probabilitas:.4f}")
-        if probabilitas > 0.5:
-            st.success(f"### Kesimpulan Klasifikasi: {prediksi}")
-        else:
-            st.info(f"### Kesimpulan Klasifikasi: {prediksi}")
+        try:
+            # Memanggil Client Hugging Face secara langsung
+            client = Client("marselferrys/indo_name-gender-prediction")
+            
+            # Menembak API. Hasil kembalian berupa tuple: (gender, conf, source, clean)
+            result = client.predict(
+                nama_input, 
+                api_name="/predict"
+            )
+            
+            # 1. Ekstraksi out_gender (indeks 0) dan bersihkan teksnya
+            gender_api_result = str(result[0]).strip().upper()
+            
+            # 2. Ekstraksi out_conf (indeks 1) dan pastikan formatnya float (angka desimal)
+            probabilitas_api = float(result[1])
+            
+            # Tampilkan metrik probabilitas asli dari model
+            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.4f}")
+            
+            # Tampilkan hasil akhir klasifikasi
+            if gender_api_result == "F":
+                st.success("### Perempuan 👩")
+            elif gender_api_result == "M":
+                st.info("### Laki-laki 👨")
+            else:
+                st.warning(f"### Kesimpulan: Tidak Diketahui ({gender_api_result})")
+                
+        except Exception as e:
+            # Menampilkan pesan error jika terjadi masalah koneksi ke server HF
+            st.error(f"Gagal menghubungi model di Hugging Face. Detail: {e}")
+            
+    st.balloons()
             
     st.balloons()
