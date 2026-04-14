@@ -140,6 +140,11 @@ if tombol_analisis and nama_input:
             
         st.dataframe(pd.DataFrame(raw_dense).style.map(color_negative_red))
         st.caption("*Angka berwarna merah adalah nilai negatif (sinyal lemah/noise).*")
+
+        time.sleep(1)
+        
+        st.line_chart(raw_dense[0])
+        st.caption("*Grafik sebelum ReLU: Lembah yang turun di bawah garis 0 adalah sinyal negatif (noise).*")
         time.sleep(1)
         
         # Menerapkan fungsi matematis ReLU: max(0, x)
@@ -148,6 +153,9 @@ if tombol_analisis and nama_input:
         st.write("2️⃣ **Setelah Aktivasi ReLU:** `1 × 64`")
         st.dataframe(pd.DataFrame(relu_dense).style.map(highlight_zero_relu))
         st.caption("*Sinyal negatif diubah menjadi 0.0000 (Sel berlatar hijau).*")
+        
+        st.line_chart(relu_dense[0])
+        st.caption("*Grafik setelah ReLU: Lembah negatif terpotong rata menjadi 0.0000. Hanya sinyal positif yang diteruskan.*")
         time.sleep(1)
         
     st.markdown("---")
