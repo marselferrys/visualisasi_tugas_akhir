@@ -4,7 +4,7 @@ st.set_page_config(page_title="Beranda - Hybrid Model", page_icon="🏠", layout
 
 # Setup memori untuk menyimpan nama agar tersinkronisasi antar halaman
 if 'nama_input' not in st.session_state:
-    st.session_state.nama_input = "DWI"
+    st.session_state.nama_input = "dwi putri"
 
 st.title("🏠 Simulator Arsitektur Hybrid MLE-BiLSTM")
 st.markdown("Selamat datang di purwarupa klasifikasi gender berdasarkan ejaan nama orang Indonesia.")
