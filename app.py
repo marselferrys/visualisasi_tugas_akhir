@@ -16,9 +16,17 @@ nama_input = st.text_input("Masukkan Nama untuk Dianalisis:", value="DWI").lower
 tombol_analisis = st.button("🚀 Simulasikan Perjalanan Data")
 
 # Fungsi untuk mewarnai nilai 0 (Dropout) di DataFrame
+'''
 def highlight_dropout(val):
     color = 'rgba(255, 99, 71, 0.3)' if val == 0 else '' # Warna merah transparan untuk neuron yang mati
     return f'background-color: {color}'
+    
+'''
+
+def highlight_dropout(val):
+    if val == 0:
+        return 'background-color: #ff0000; color: white; font-weight: bold;'
+    return ''
 
 if tombol_analisis and nama_input:
     st.markdown(f"### Menganalisis nama: **{nama_input}**")
@@ -135,7 +143,7 @@ if tombol_analisis and nama_input:
         dummy_dropout_2 = dummy_dense * mask_dropout_2
 
         st.dataframe(pd.DataFrame(dummy_dropout_2).style.map(highlight_dropout))
-        st.caption("*Sel berlatar merah (0.000) adalah neuron yang ditahan/dimatikan untuk sementara.*")
+        st.caption("*Sel berlatar merah (0.000) adalah neuron yang dimatikan untuk sementara.*")
         time.sleep(1)
 
     st.markdown("---")
