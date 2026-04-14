@@ -63,7 +63,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
             # Mencari kata di dalam dictionary hasil ekstraksi Excel
             if kata in tabel_frekuensi:
                 skor = tabel_frekuensi[kata]
-                st.success(f"✔️ `{kata}` ditemukan. Skor Peluang Perempuan = {skor:.4f}")
+                st.success(f"✔️ `{kata}` ditemukan. Skor Peluang Perempuan = {skor:.2f}")
             else:
                 skor = 0.5
                 st.warning(f"⚠️ `{kata}` adalah OOV (Tidak ada di database). Diberi skor netral = {skor}")
@@ -74,6 +74,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         rata_rata = sum(skor_tokens) / len(skor_tokens)
         st.markdown("---")
         st.info(f"**3. Rata-rata Skor (MLE Final):** `({str(' + ').join([f'{s:.4f}' for s in skor_tokens])}) / {len(skor_tokens)}` = **{rata_rata:.2f}**")
+        st.caption(f"Probability Treshold: score > 0,90 (P), score < 0,10 (L)")
         
         # Logika rujukan Hybrid 
         if 0.1 <= rata_rata <= 0.9:
