@@ -150,7 +150,7 @@ if tombol_analisis and nama_input:
             # Memanggil Client Hugging Face secara langsung
             client = Client("marselferrys/indo_name-gender-prediction")
             
-            # Menembak API. Hasil kembalian berupa tuple: (gender, conf, source, clean)
+            # Menembak API. Hasil kembalian berupa tuple
             result = client.predict(
                 nama_input, 
                 api_name="/predict"
@@ -161,10 +161,7 @@ if tombol_analisis and nama_input:
             
             # 2. Ekstraksi out_conf (indeks 1) dan pastikan formatnya float (angka desimal)
             probabilitas_api = float(result[1])
-            
-            # Tampilkan metrik probabilitas asli dari model
-            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.4f}")
-            
+
             # Tampilkan hasil akhir klasifikasi
             if gender_api_result == "F":
                 st.success("### Perempuan 👩")
@@ -172,6 +169,9 @@ if tombol_analisis and nama_input:
                 st.info("### Laki-laki 👨")
             else:
                 st.warning(f"### Kesimpulan: Tidak Diketahui ({gender_api_result})")
+            
+            # Tampilkan metrik probabilitas asli dari model
+            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.4f}")
                 
         except Exception as e:
             # Menampilkan pesan error jika terjadi masalah koneksi ke server HF
