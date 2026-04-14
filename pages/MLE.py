@@ -2,6 +2,10 @@ import streamlit as st
 import time
 
 st.set_page_config(page_title="Simulasi MLE", page_icon="📊", layout="wide")
+
+if 'nama_input' not in st.session_state:
+    st.session_state.nama_input = "dwi putri"
+    
 st.title("📊 Simulasi Maximum Likelihood Estimation (MLE)")
 st.markdown("---")
 
