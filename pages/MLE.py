@@ -105,6 +105,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
                     # Menampilkan rumus matematika menggunakan LaTeX
                     st.latex(r"\text{Skor} = \frac{\text{Freq P}}{\text{Freq P} + \text{Freq L}}")
                     st.latex(rf"\frac{{{freq_p}}}{{{total}}} = {skor:.4f}")
+                    st.success(f"**Skor = {skor:.4f}**")
                     
                 else:
                     skor = 0.5
