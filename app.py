@@ -147,7 +147,7 @@ if tombol_analisis and nama_input:
         
         st.write("2️⃣ **Setelah Aktivasi ReLU:** `1 × 64`")
         st.dataframe(pd.DataFrame(relu_dense).style.map(highlight_zero_relu))
-        st.caption("*Sinyal negatif diubah menjadi 0.0000 (Sel berlatar kuning).*")
+        st.caption("*Sinyal negatif diubah menjadi 0.0000 (Sel berlatar hijau).*")
         time.sleep(1)
         
     st.markdown("---")
