@@ -94,7 +94,6 @@ if tombol_analisis and nama_input:
         # Membuat matriks dummy sesuai dimensi asli
         dummy_bilstm_out = np.random.rand(MAX_LEN, 256)
         
-        # PERBAIKAN DI SINI: Gunakan background_gradient, bukan map
         st.dataframe(pd.DataFrame(dummy_bilstm_out).style.background_gradient(cmap='Blues'), height=200)
         
         # Matikan 30% sel secara acak
@@ -111,7 +110,7 @@ if tombol_analisis and nama_input:
     # ================= LAYER 5 =================
     with col1:
         # Menggunakan variabel MAX_LEN agar teks dinamis menyesuaikan panjang padding
-        st.info(f"📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh {MAX_LEN} karakter dan mencomot nilai fitur yang paling dominan/kuat saja.")
+        st.info(f"📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh {MAX_LEN} karakter dan mencomot nilai fitur yang paling dominan saja.")
     with col2:
         dummy_pooling = np.max(dummy_dropout_1, axis=0, keepdims=True)
         st.write("Bentuk Array setelah Reduksi Pooling Layer: `1 × 256`")
@@ -125,13 +124,13 @@ if tombol_analisis and nama_input:
         st.info("📍 **Layer 6: Dense Layer (64)**\n\nFully Connected Layer dengan aktivasi ReLU. Mengombinasikan fitur-fitur penting menjadi 64 titik penalaran tinggi.")
     with col2:
         dummy_dense = np.random.rand(1, 64)
-        st.write("Bentuk Array: `1 × 64`")
+        st.write("Dense Layer (64), Bentuk Array: `1 × 64`")
         st.dataframe(pd.DataFrame(dummy_dense).style.highlight_max(axis=1, color='lightgreen'))
         time.sleep(1)
         
     st.markdown("---")
 
-    # ================= LAYER 7 (BARU: DROPOUT 2) =================
+    # ================= LAYER 7 (DROPOUT 2) =================
     with col1:
         st.error("📍 **Layer 7: Dropout (30%)**\n\nKembali menonaktifkan 30% koneksi dari 64 neuron Dense sebelum tahap klasifikasi akhir.")
     with col2:
