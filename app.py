@@ -16,9 +16,9 @@ col1, col2 = st.columns(2)
 with col1:
     st.info("**Modul 1: Maximum Likelihood Estimation (MLE)**\n\nFilter tahap pertama menggunakan probabilitas kamus nama berdasarkan kata (Fast-Path).")
     if st.button("📊 Masuk ke Halaman MLE", use_container_width=True):
-        st.switch_page("pages/1_MLE.py") # Melompat ke file MLE
+        st.switch_page("pages/MLE.py") # Melompat ke file MLE
 
 with col2:
     st.warning("**Modul 2: Bidirectional LSTM (BiLSTM)**\n\nTahap mendalam yang membedah nama karakter-demi-karakter untuk mencari pola morfologi tersembunyi.")
     if st.button("🤖 Masuk ke Halaman BiLSTM", use_container_width=True):
-        st.switch_page("pages/2_BiLSTM.py") # Melompat ke file BiLSTM
+        st.switch_page("pages/BiLSTM.py") # Melompat ke file BiLSTM
