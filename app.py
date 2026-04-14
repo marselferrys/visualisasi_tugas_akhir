@@ -7,7 +7,9 @@ if 'nama_input' not in st.session_state:
     st.session_state.nama_input = "dwi putri"
 
 st.title("🏠 Simulator Arsitektur Hybrid MLE-BiLSTM")
-st.markdown("Selamat datang di purwarupa klasifikasi gender berdasarkan ejaan nama orang Indonesia.")
+st.markdown("Diharapkan melalui platform ini, proses dibalik model yang kompleks diubah menjadi simulasi *step-by-step* yang intuitif. 
+Tujuan utamanya adalah untuk memberikan **transparansi penuh** terhadap alur pemrosesan data nama, 
+sehingga setiap keputusan yang diambil oleh model dapat dipahami dan dijelaskan secara visual.")
 st.markdown("---")
 
 st.write("Silakan pilih menu di **Sidebar sebelah kiri** untuk memulai simulasi, atau gunakan tombol cepat di bawah ini:")
