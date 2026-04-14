@@ -134,6 +134,7 @@ if tombol_analisis and nama_input:
         # Menghasilkan angka acak antara -1 hingga 1 agar terdapat nilai negatif
         raw_dense = np.random.uniform(-1, 1, (1, 64))
         
+        st.write("Dense Layer (64)")
         st.write("1️⃣ **Raw Dense Output (Sebelum ReLU):** `1 × 64`")
             
         st.dataframe(pd.DataFrame(raw_dense).style.map(color_negative_red))
@@ -157,7 +158,7 @@ if tombol_analisis and nama_input:
         st.write("Bentuk Array setelah Dropout Layer 2: `1 × 64`")
         # Matikan 30% dari 64 neuron
         mask_dropout_2 = np.random.rand(1, 64) > 0.3 
-        dummy_dropout_2 = dummy_dense * mask_dropout_2
+        dummy_dropout_2 = relu_dense * mask_dropout_2
 
         st.dataframe(pd.DataFrame(dummy_dropout_2).style.map(highlight_dropout))
         st.caption("*Sel berlatar merah (0.000) adalah neuron yang dinonaktifkan.*")
