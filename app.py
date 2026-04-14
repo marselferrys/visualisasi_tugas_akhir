@@ -7,7 +7,7 @@ if 'nama_input' not in st.session_state:
     st.session_state.nama_input = "dwi putri"
 
 st.title("🏠 Simulator Pemrosesan Data Nama Pada Model MLE dan BiLSTM")
-st.markdown("""Diharapkan melalui platform ini, proses dibalik model yang kompleks diubah menjadi simulasi *step-by-step* yang intuitif. 
+st.markdown("""Diharapkan melalui platform ini, proses dibalik model yang kompleks dapat diubah menjadi simulasi *step-by-step* yang intuitif. 
 Tujuan utamanya adalah untuk memberikan **transparansi penuh** terhadap alur pemrosesan data nama, 
 sehingga setiap keputusan yang diambil oleh model dapat dipahami dan dijelaskan secara visual.""")
 st.markdown("---")
