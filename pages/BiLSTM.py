@@ -160,7 +160,7 @@ if tombol_analisis and nama_input:
         raw_dense = np.random.uniform(-1, 1, (1, 64))
         
         st.write("Dense Layer (64)")
-        st.write("1️⃣ **Raw Dense Output (Sebelum ReLU):** `1 × 64`")
+        st.write("1️⃣ **Raw Dense Output:** `1 × 64`")
             
         st.dataframe(pd.DataFrame(raw_dense).style.map(color_negative_red))
         st.caption("*Angka berwarna merah adalah nilai negatif (sinyal lemah/noise).*")
@@ -168,13 +168,13 @@ if tombol_analisis and nama_input:
         time.sleep(1)
         
         st.line_chart(raw_dense[0])
-        st.caption("*Grafik sebelum ReLU: Lembah yang turun di bawah garis 0 adalah sinyal negatif (noise).*")
+        st.caption("*Grafik Raw Dense Output: Lembah yang turun di bawah garis 0 adalah sinyal negatif (noise).*")
         time.sleep(1)
         
         # Menerapkan fungsi matematis ReLU: max(0, x)
         relu_dense = np.maximum(0, raw_dense)
         
-        st.write("2️⃣ **Setelah Aktivasi ReLU:** `1 × 64`")
+        st.write("2️⃣ **Setelah Fungsi Aktivasi ReLU:** `1 × 64`")
         st.dataframe(pd.DataFrame(relu_dense).style.map(highlight_zero_relu))
         st.caption("*Sinyal negatif diubah menjadi 0.0000 (Sel berlatar hijau).*")
         
