@@ -79,7 +79,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         # Logika rujukan Hybrid 
         if 0.1 <= rata_rata <= 0.9:
             st.error("🚨 **Skor Ambigu!** Nama ini ke model BiLSTM.")
-            if st.button("👉 Rujuk nama ini ke Halaman BiLSTM"):
+            if st.button("👉 Ke Halaman BiLSTM"):
                 st.switch_page("pages/2_BiLSTM.py")
         elif rata_rata > 0.9:
             st.success("👩 **Perempuan.**")
