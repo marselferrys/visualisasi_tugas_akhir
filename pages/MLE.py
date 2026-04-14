@@ -38,7 +38,6 @@ def load_mle_database():
 # TAMPILAN HALAMAN MLE
 # ==========================================
 st.title("📊 Simulator Maximum Likelihood Estimation (MLE)")
-st.markdown("> **Membedah proses pencarian kamus dan kalkulasi probabilitas frekuensi secara transparan.**")
 st.markdown("---")
 
 # Memuat tabel frekuensi token nama dari excel
