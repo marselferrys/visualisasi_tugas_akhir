@@ -79,7 +79,8 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         
         st.markdown("---")
         st.write("### 3. Detail Kalkulasi Skor Peluang (MLE) per Token")
-        st.write("Menggunakan rumus: $\\text{Skor} = \\frac{\\text{Freq\\_P}}{\\text{Total}}$")
+        st.write("Menggunakan rumus MLE:")
+        st.latex(r"\text{MLE(female)} = \frac{\text{count(female)}}{\text{count(female)} + \text{count(male)}}")
         
         skor_tokens = []
         
@@ -102,10 +103,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
                     st.write(f"- Total Muncul: `{total}`")
                     
                     # Menampilkan rumus matematika menggunakan LaTeX
-                    st.latex(r"\text{Total} = \text{Freq P} + \text{Freq L}")
-                    st.latex(rf"{total} = {freq_p} + {freq_l}")
-
-                    st.latex(r"\text{Skor} = \frac{\text{Freq P}}{\text{Total}}")
+                    st.latex(r"\text{Skor} = \frac{\text{Freq P}}{\text{Freq P} + \text{Freq L}}")
                     st.latex(rf"\frac{{{freq_p}}}{{{total}}} = {skor:.4f}")
                     
                 else:
