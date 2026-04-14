@@ -124,6 +124,7 @@ if tombol_analisis and nama_input:
         dummy_pooling = np.max(dummy_dropout_1, axis=0, keepdims=True)
         st.write("Bentuk Array setelah Reduksi Pooling Layer: `1 × 256`")
         st.bar_chart(dummy_pooling[0][:]) 
+        st.dataframe(pd.DataFrame(dummy_pooling).style.map(cmap='Blues'))
         time.sleep(1)
         
     st.markdown("---")
