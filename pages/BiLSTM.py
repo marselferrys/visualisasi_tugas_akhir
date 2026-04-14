@@ -91,7 +91,7 @@ if tombol_analisis and nama_input:
         df_emb = pd.DataFrame(dummy_embedding)
         st.dataframe(df_emb.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
         
-        st.caption(f"*Menampilkan {MAX_LEN} baris.*")
+        st.caption(f"Menampilkan Matriks *{MAX_LEN} x 128*.")
         
         # Reset seed agar tidak mempengaruhi random layer berikutnya
         np.random.seed(None)
