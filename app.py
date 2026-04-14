@@ -16,12 +16,13 @@ nama_input = st.text_input("Masukkan Nama untuk Dianalisis:", value="DWI").lower
 tombol_analisis = st.button("🚀 Simulasikan Perjalanan Data")
 
 # Fungsi untuk mewarnai nilai 0 (Dropout) di DataFrame
-'''
+
+"""
 def highlight_dropout(val):
     color = 'rgba(255, 99, 71, 0.3)' if val == 0 else '' # Warna merah transparan untuk neuron yang mati
     return f'background-color: {color}'
-    
-'''
+"""
+
 
 def highlight_dropout(val):
     if val == 0:
