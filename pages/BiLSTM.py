@@ -8,7 +8,6 @@ from gradio_client import Client
 st.set_page_config(page_title="Visualisasi BiLSTM - Marchel", layout="wide")
 
 st.title("🧠 Simulator Arsitektur BiLSTM")
-st.subheader("Klasifikasi Gender Berdasarkan Nama (Studi Kasus: Nama Orang Indonesia)")
 st.markdown("---")
 
 # Input Nama dari Pengguna
