@@ -3,3 +3,4 @@ numpy
 pandas
 matplotlib
 gradio_client
+openpyxl
