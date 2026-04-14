@@ -171,7 +171,7 @@ if tombol_analisis and nama_input:
                 st.warning(f"### Kesimpulan: Tidak Diketahui ({gender_api_result})")
             
             # Tampilkan metrik probabilitas asli dari model
-            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.4f}")
+            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.2f}")
                 
         except Exception as e:
             # Menampilkan pesan error jika terjadi masalah koneksi ke server HF
