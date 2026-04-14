@@ -103,7 +103,7 @@ if tombol_analisis and nama_input:
         dummy_dropout_1 = dummy_bilstm_out * mask_dropout_1
         
         st.dataframe(pd.DataFrame(dummy_dropout_1).style.map(highlight_dropout), height=200)
-        st.caption(f"*Cuplikan matriks {MAX_LEN}x256. Sel berlatar merah (0.000) adalah neuron yang dimatikan.*")
+        st.caption(f"*Cuplikan matriks {MAX_LEN}x256. Sel berlatar merah (0.000) adalah neuron yang dinonaktifkan.*")
         time.sleep(1)
 
     st.markdown("---")
@@ -135,13 +135,13 @@ if tombol_analisis and nama_input:
     with col1:
         st.error("📍 **Layer 7: Dropout (30%)**\n\nKembali menonaktifkan 30% koneksi dari 64 neuron Dense sebelum tahap klasifikasi akhir.")
     with col2:
-        st.write("Bentuk Array: `1 × 64`")
+        st.write("Bentuk Array setelah Dropout Layer 2: `1 × 64`")
         # Matikan 30% dari 64 neuron
         mask_dropout_2 = np.random.rand(1, 64) > 0.3 
         dummy_dropout_2 = dummy_dense * mask_dropout_2
 
         st.dataframe(pd.DataFrame(dummy_dropout_2).style.map(highlight_dropout))
-        st.caption("*Sel berlatar merah (0.000) adalah neuron yang dimatikan untuk sementara.*")
+        st.caption("*Sel berlatar merah (0.000) adalah neuron yang dinonaktifkan.*")
         time.sleep(1)
 
     st.markdown("---")
