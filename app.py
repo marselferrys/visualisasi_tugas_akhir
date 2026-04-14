@@ -21,10 +21,18 @@ tombol_analisis = st.button("🚀 Simulasikan Perjalanan Data")
 #    color = 'rgba(255, 99, 71, 0.3)' if val == 0 else '' # Warna merah transparan untuk neuron yang mati
 #    return f'background-color: {color}'
 
-
+# Fungsi untuk memberi highlight pada angka yang diubah menjadi 0 untuk Dropout
 def highlight_dropout(val):
     color = '#ff0000' if val == 0 else ''
     return f'background-color: {color}; color: white;'
+
+# Fungsi untuk memberi highlight pada angka yang diubah menjadi 0 untuk Relu
+def highlight_zero_relu(val):
+    return 'background-color: rgba(255, 255, 0, 0.3); color: white;' if val == 0 else ''
+
+# Fungsi untuk memberi warna teks merah pada angka negatif
+def color_negative_red(val):
+    return 'color: #ff4b4b; font-weight: bold;' if val < 0 else ''
 
 if tombol_analisis and nama_input:
     st.markdown(f"### Menganalisis nama: **{nama_input}**")
@@ -123,9 +131,21 @@ if tombol_analisis and nama_input:
     with col1:
         st.info("📍 **Layer 6: Dense Layer (64)**\n\nFully Connected Layer dengan aktivasi ReLU. Mengombinasikan fitur-fitur penting menjadi 64 titik penalaran tinggi.")
     with col2:
-        dummy_dense = np.random.rand(1, 64)
-        st.write("Dense Layer (64), Bentuk Array: `1 × 64`")
-        st.dataframe(pd.DataFrame(dummy_dense).style.highlight_max(axis=1, color='lightgreen'))
+        # Menghasilkan angka acak antara -1 hingga 1 agar terdapat nilai negatif
+        raw_dense = np.random.uniform(-1, 1, (1, 64))
+        
+        st.write("1️⃣ **Raw Dense Output (Sebelum ReLU):** `1 × 64`")
+            
+        st.dataframe(pd.DataFrame(raw_dense).style.map(color_negative_red))
+        st.caption("*Angka berwarna merah adalah nilai negatif (sinyal lemah/noise).*")
+        time.sleep(1)
+        
+        # Menerapkan fungsi matematis ReLU: max(0, x)
+        relu_dense = np.maximum(0, raw_dense)
+        
+        st.write("2️⃣ **Setelah Aktivasi ReLU:** `1 × 64`")
+        st.dataframe(pd.DataFrame(relu_dense).style.map(highlight_zero_relu))
+        st.caption("*Sinyal negatif diubah menjadi 0.0000 (Sel berlatar kuning).*")
         time.sleep(1)
         
     st.markdown("---")
