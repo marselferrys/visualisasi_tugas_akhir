@@ -126,7 +126,15 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         
         # Menampilkan rumus rata-rata
         rumus_rata_rata = " + ".join([f"{s:.2f}" for s in skor_tokens])
-        st.info(f"**Rata-rata Skor MLE:** `({rumus_rata_rata}) / {len(skor_tokens)}` = **{rata_rata:.2f}**")
+        # Tampilkan penjumlahan skor
+        st.latex(rf"\sum \text{{Skor MLE}} = {rumus_rata_rata}")
+
+        # Jumlah data
+        st.latex(rf"n = {len(skor_tokens)}")
+
+        # Perhitungan akhir
+        st.latex(rf"\text{{Rata-rata}} = \frac{{{rumus_rata_rata}}}{{{len(skor_tokens)}}} = {rata_rata:.2f}")
+        st.success(f"**MLE Score untuk {nama}  = {rata_rata:.2f}**")
         st.caption("Threshold: Perempuan > 0.90 | Laki-laki < 0.10 | Ambigu 0.10 - 0.90")
         
         # Logika rujukan Hybrid 
