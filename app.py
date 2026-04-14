@@ -29,10 +29,10 @@ if tombol_analisis and nama_input:
     with col1:
         st.info("📍 **Layer 1: Input & Padding**\n\nMemecah string menjadi karakter, mengubahnya ke indeks leksikon, dan memastikan panjang array tepat 25.")
     with col2:
-        char_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 
-                     'j': 10, 'k': 11, 'l': 12, 'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 
-                     'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23, 'x': 24, 'y': 25, 
-                     'z': 26, ' ': 27, '-': 28, "'": 29}
+        char_dict = {'a': 1, 'i': 2, ',': 3, 'n': 4, 'r': 5, 'u': 6, 's': 7,
+                    't': 8, 'm': 9, 'd': 10, 'l': 11, 'h': 12, 'e': 13, 'y': 14,
+                    'o': 15, 'f': 16, 'k': 17, 'g': 18, 'p': 19, 'w': 20, 'b': 21,
+                    'z': 22, 'v': 23, 'j': 24, 'c': 25, 'q': 26, 'x': 27, '|PAD|': 0}
 
         chars = list(nama_input.lower())
         indeks = [char_dict.get(c, 0) for c in chars]
