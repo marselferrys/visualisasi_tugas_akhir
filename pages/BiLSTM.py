@@ -42,8 +42,9 @@ if tombol_analisis and nama_input:
     
     # ================= LAYER 1 =================
     with col1:
-        st.info("📍 **Layer 1: Input & Padding**\n\nMemecah string menjadi karakter, mengubahnya ke indeks leksikon, dan memastikan panjang array tepat 25.")
+        st.info(f"📍 **Layer 1: Input & Padding**\n\nMemecah string menjadi karakter, mengubahnya ke indeks leksikon asli, dan memastikan panjang array tepat {MAX_LEN}.")
     with col2:
+        # Leksikon asli sesuai permintaan Anda
         char_dict = {'a': 1, 'i': 2, ' ': 3, 'n': 4, 'r': 5, 'u': 6, 's': 7,
                     't': 8, 'm': 9, 'd': 10, 'l': 11, 'h': 12, 'e': 13, 'y': 14,
                     'o': 15, 'f': 16, 'k': 17, 'g': 18, 'p': 19, 'w': 20, 'b': 21,
@@ -58,7 +59,8 @@ if tombol_analisis and nama_input:
         else:
             selisih = MAX_LEN - len(indeks)
             indeks_pad = indeks + [0] * selisih
-            chars_pad = chars + ['PAD'] * selisih
+            # Menggunakan '|PAD|' sebagai penanda visual di tabel
+            chars_pad = chars + ['|PAD|'] * selisih
 
         st.write(f"**Panjang Nama Asli:** {len(chars)} karakter")
         df_pad = pd.DataFrame({"Karakter": chars_pad, "Indeks Numerik": indeks_pad})
@@ -69,12 +71,30 @@ if tombol_analisis and nama_input:
     
     # ================= LAYER 2 =================
     with col1:
-        st.info("📍 **Layer 2: Character Embedding**\n\nMengubah setiap karakter menjadi representasi vektor padat berdimensi 128.")
+        st.info("📍 **Layer 2: Character Embedding**\n\nMengubah setiap indeks menjadi vektor padat 128-dimensi menggunakan *Lookup Table*.")
     with col2:
-        dummy_embedding = np.random.randn(MAX_LEN, 128)
+        # Menetapkan seed agar nilai acak tetap konsisten untuk kebutuhan visualisasi
+        np.random.seed(42)
+        
+        # Membuat Bobot Embedding Utama (Lookup Table)
+        # Ukuran: jumlah karakter unik dalam leksikon (28) x dimensi (128)
+        ukuran_kamus = len(char_dict)
+        dimensi_embedding = 128
+        bobot_asli = np.random.randn(ukuran_kamus, dimensi_embedding)
+        
+        # Mengambil baris dari bobot_asli berdasarkan indeks_pad
+        dummy_embedding = np.array([bobot_asli[idx] for idx in indeks_pad])
+        
         st.write(f"Bentuk Matriks dari Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
-        st.dataframe(pd.DataFrame(dummy_embedding).iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
-        st.caption("*Menampilkan  25 x 128 dimensi.")
+        
+        # Menampilkan 10 kolom pertama untuk keterbacaan
+        df_emb = pd.DataFrame(dummy_embedding)
+        st.dataframe(df_emb.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
+        
+        st.caption(f"*Menampilkan {MAX_LEN} baris.*")
+        
+        # Reset seed agar tidak mempengaruhi random layer berikutnya
+        np.random.seed(None)
         time.sleep(1)
         
     st.markdown("---")
