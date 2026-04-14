@@ -104,9 +104,10 @@ if tombol_analisis and nama_input:
     
     # ================= LAYER 5 =================
     with col1:
-        st.info("📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh 25 karakter dan mencomot nilai fitur yang paling dominan/kuat saja.")
+        # Menggunakan variabel MAX_LEN agar teks dinamis menyesuaikan panjang padding
+        st.info(f"📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh {MAX_LEN} karakter dan mencomot nilai fitur yang paling dominan/kuat saja.")
     with col2:
-        dummy_pooling = np.random.rand(1, 256)
+        dummy_pooling = np.max(dummy_dropout_1, axis=0, keepdims=True)
         st.write("Bentuk Array setelah Reduksi Pooling Layer: `1 × 256`")
         st.bar_chart(dummy_pooling[0][:]) 
         time.sleep(1)
