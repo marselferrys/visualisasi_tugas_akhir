@@ -38,7 +38,7 @@ def load_mle_database():
 # TAMPILAN HALAMAN MLE
 # ==========================================
 st.set_page_config(page_title="Simulasi MLE", page_icon="📊", layout="wide")
-st.title("📊 Simulasi Maximum Likelihood Estimation (MLE)")
+st.title("📊 Simulator Maximum Likelihood Estimation (MLE)")
 st.markdown("---")
 
 # Memuat database dari excel secara efisien
