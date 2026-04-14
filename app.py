@@ -125,7 +125,7 @@ if tombol_analisis and nama_input:
 
     # ================= LAYER 7 (BARU: DROPOUT 2) =================
     with col1:
-        st.error("📍 **Layer 7: Dropout (30%)**\n\nSabuk pengaman kedua. Kembali menonaktifkan 30% koneksi dari 64 neuron Dense sebelum tahap klasifikasi akhir.")
+        st.error("📍 **Layer 7: Dropout (30%)**\n\nKembali menonaktifkan 30% koneksi dari 64 neuron Dense sebelum tahap klasifikasi akhir.")
     with col2:
         st.write("Bentuk Array: `1 × 64`")
         # Matikan 30% dari 64 neuron
