@@ -122,8 +122,10 @@ if tombol_analisis and nama_input:
         st.info(f"📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh {MAX_LEN} karakter dan mencomot nilai fitur yang paling dominan saja.")
     with col2:
         dummy_pooling = np.max(dummy_dropout_1, axis=0, keepdims=True)
-        st.write("Bentuk Array setelah Reduksi Pooling Layer: `1 × 256`")
+        st.write("1️⃣ **Bentuk Matriks setelah Reduksi Pooling Layer:** `1 × 256`")
         st.bar_chart(dummy_pooling[0][:]) 
+        st.caption("*Mengambil nilai fitur paling dominan dari tiap karakter*")
+        t.write("2️⃣ **Bentuk Array 1D:** `1 × 256`")
         st.dataframe(pd.DataFrame(dummy_pooling).style.background_gradient(cmap='Blues'))
         time.sleep(1)
         
