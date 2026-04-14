@@ -10,7 +10,7 @@ st.title("📊 Simulasi Maximum Likelihood Estimation (MLE)")
 st.markdown("---")
 
 # Mengambil memori nama dari session_state
-nama = st.text_input("Masukkan Nama Lengkap:", value=st.session_state.nama_input).upper()
+nama = st.text_input("Masukkan Nama Lengkap:", value=st.session_state.nama_input).lower()
 st.session_state.nama_input = nama # Update memori jika ada ketikan baru
 
 if st.button("🧮 Simulasikan Algoritma MLE"):
