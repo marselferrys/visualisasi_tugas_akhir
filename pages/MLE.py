@@ -136,7 +136,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         # Perhitungan akhir
         st.latex(rf"\text{{Rata-rata}} = \frac{{{rumus_rata_rata}}}{{{len(skor_tokens)}}} = {rata_rata:.2f}")
         st.success(f"**MLE Score untuk {nama}  = {rata_rata:.2f}**")
-        st.caption("Threshold: Perempuan > 0.90 | Laki-laki < 0.10 | Ambigu 0.10 - 0.90")
+        st.caption("Probability Threshold: Perempuan > 0.90 | Laki-laki < 0.10 | Ambigu 0.10 - 0.90")
 
         # ==========================================================
         # VISUALISASI THRESHOLD (DECISION BOUNDARY)
