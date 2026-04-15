@@ -185,6 +185,25 @@ if tombol_analisis and nama_input:
         
         st.line_chart(raw_dense[0])
         st.caption("*Grafik Raw Dense Output: Lembah yang turun di bawah garis 0 adalah sinyal negatif (noise).*")
+        fig1, ax1 = plt.subplots(figsize=(6, 3))
+        x_vals = np.linspace(-1.2, 1.2, 100)
+        
+        # Garis referensi Linear f(x) = x
+        ax1.plot(x_vals, x_vals, color="gray", linestyle="--", label="f(x) = x (Linear)")
+        
+        # Titik data asli
+        warna_titik = ['#ff4b4b' if val <= 0 else '#00cc66' for val in raw_dense[0]]
+        ax1.scatter(raw_dense[0], raw_dense[0], color=warna_titik, s=40, zorder=5)
+        
+        ax1.axhline(y=0, color='black', linewidth=0.8, alpha=0.3)
+        ax1.axvline(x=0, color='black', linewidth=0.8, alpha=0.3)
+        ax1.set_title("Fungsi Linear (Sinyal Mentah)")
+        ax1.set_xlabel("Input")
+        ax1.set_ylabel("Output")
+        ax1.grid(True, alpha=0.2)
+        ax1.legend()
+        st.pyplot(fig1)
+        st.markdown("<br>", unsafe_allow_html=True) # Memberi sedikit jarak ke bagian ReLU
         time.sleep(1)
         
         # Menerapkan fungsi matematis ReLU: max(0, x)
@@ -196,6 +215,25 @@ if tombol_analisis and nama_input:
         
         st.line_chart(relu_dense[0])
         st.caption("*Grafik setelah ReLU: Lembah negatif terpotong rata menjadi 0.0000. Hanya sinyal positif yang diteruskan.*")
+        fig2, ax2 = plt.subplots(figsize=(6, 3))
+        x_vals2 = np.linspace(-1.2, 1.2, 100)
+        
+        # Garis referensi ReLU f(x) = max(0, x)
+        y_relu = np.maximum(0, x_vals2)
+        ax2.plot(x_vals2, y_relu, color="#4682B4", linestyle="--", label="f(x) = max(0, x)")
+        
+        # Titik data setelah ReLU (Patahan di angka 0)
+        warna_titik = ['#ff4b4b' if val <= 0 else '#00cc66' for val in raw_dense[0]]
+        ax2.scatter(raw_dense[0], relu_dense[0], color=warna_titik, s=40, zorder=5)
+        
+        ax2.axhline(y=0, color='black', linewidth=0.8, alpha=0.3)
+        ax2.axvline(x=0, color='black', linewidth=0.8, alpha=0.3)
+        ax2.set_title("Fungsi Non-Linear (Aktivasi ReLU)")
+        ax2.set_xlabel("Input Mentah")
+        ax2.set_ylabel("Output Setelah ReLU")
+        ax2.grid(True, alpha=0.2)
+        ax2.legend()
+        st.pyplot(fig2)
         time.sleep(1)
         
     st.markdown("---")
