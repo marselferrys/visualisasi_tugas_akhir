@@ -79,7 +79,8 @@ if tombol_analisis and nama_input:
         # Ukuran: jumlah karakter unik dalam leksikon (28) x dimensi (128)
         ukuran_kamus = len(char_dict)
         dimensi_embedding = 128
-        bobot_asli = np.random.randn(ukuran_kamus, dimensi_embedding)
+        bobot_asli = np.random.uniform(-1, 1, (ukuran_kamus, dimensi_embedding))
+        # bobot_asli = np.random.randn(ukuran_kamus, dimensi_embedding)
         
         # Mengambil baris dari bobot_asli berdasarkan indeks_pad
         dummy_embedding = np.array([bobot_asli[idx] for idx in indeks_pad])
@@ -120,7 +121,8 @@ if tombol_analisis and nama_input:
         st.write(f"Bentuk Matriks Hasil BiLSTM layer: `{MAX_LEN} × 256`, Concat 2 LSTM Layer (128+128)")
         
         # Membuat matriks dummy sesuai dimensi asli
-        dummy_bilstm_out = np.random.randn(MAX_LEN, 256)
+        dummy_bilstm_out = np.random.uniform(-1, 1, (MAX_LEN, 256))
+        # dummy_bilstm_out = np.random.randn(MAX_LEN, 256)
         
         st.dataframe(pd.DataFrame(dummy_bilstm_out).style.background_gradient(cmap='Blues'), height=200)
         
