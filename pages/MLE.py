@@ -136,6 +136,45 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         st.latex(rf"\text{{Rata-rata}} = \frac{{{rumus_rata_rata}}}{{{len(skor_tokens)}}} = {rata_rata:.2f}")
         st.success(f"**MLE Score untuk {nama}  = {rata_rata:.2f}**")
         st.caption("Threshold: Perempuan > 0.90 | Laki-laki < 0.10 | Ambigu 0.10 - 0.90")
+
+        # ==========================================================
+        # VISUALISASI THRESHOLD (DECISION BOUNDARY)
+        # ==========================================================
+
+        fig, ax = plt.subplots(figsize=(10, 2))
+        
+        # Mewarnai 3 Zona Threshold
+        ax.axvspan(0.0, 0.10, color='#ffb3b3', alpha=0.5, label='Laki-laki (< 0.10)')
+        ax.axvspan(0.10, 0.90, color='#fffacd', alpha=0.5, label='Ambigu (0.10 - 0.90)')
+        ax.axvspan(0.90, 1.0, color='#b3ffb3', alpha=0.5, label='Perempuan (> 0.90)')
+        
+        # Menentukan warna titik dan label berdasarkan jatuhnya skor
+        if rata_rata < 0.10:
+            warna_titik, label_titik = '#cc0000', 'Laki-laki' # Merah gelap
+        elif rata_rata > 0.90:
+            warna_titik, label_titik = '#008000', 'Perempuan' # Hijau gelap
+        else:
+            warna_titik, label_titik = '#ff8c00', 'Ambigu'    # Oranye
+            
+        # Menjatuhkan Titik Keputusan (Scatter Plot)
+        ax.scatter([rata_rata], [0.5], color=warna_titik, s=400, edgecolor='black', zorder=5)
+        
+        # Menambahkan teks angka persis di atas titik
+        ax.text(rata_rata, 0.65, f"Skor: {rata_rata:.2f}\n({label_titik})", 
+                ha='center', va='bottom', fontsize=11, fontweight='bold',
+                bbox=dict(facecolor='white', alpha=0.7, edgecolor='none', boxstyle='round,pad=0.2'))
+
+        # Merapikan tampilan sumbu dan grafik
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.set_yticks([]) # Sembunyikan sumbu Y karena ini hanya garis 1 dimensi
+        ax.set_xticks([0.0, 0.10, 0.50, 0.90, 1.0])
+        ax.set_title("Peta Titik Jatuh Keputusan MLE (Decision Boundary)", pad=15)
+        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=3)
+        
+        st.pyplot(fig)
+        st.markdown("---")
+        # ==========================================================
         
         # Logika rujukan Hybrid 
         if 0.1 <= rata_rata <= 0.9:
