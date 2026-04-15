@@ -203,7 +203,7 @@ if tombol_analisis and nama_input:
         ax1.grid(True, alpha=0.2)
         ax1.legend()
         st.pyplot(fig1)
-        st.caption("🔹 *Grafik Pemetaan Linear: Menunjukkan bahwa sebelum melewati fungsi aktivasi, nilai output sama persis dengan input (f(x) = x). Titik negatif (merah) dan positif (hijau) masih tersebar bebas di garis lurus.*")
+        st.caption("🔹 *Grafik Linear: Output sama dengan input (f(x) = x). Titik merah (negatif) dan hijau (positif) tersebar sejajar di garis lurus.*")
         st.markdown("<br>", unsafe_allow_html=True) # Memberi sedikit jarak ke bagian ReLU
         time.sleep(1)
         
@@ -235,7 +235,7 @@ if tombol_analisis and nama_input:
         ax2.grid(True, alpha=0.2)
         ax2.legend()
         st.pyplot(fig2)
-        st.caption("🔹 *Grafik Pemetaan Non-Linear (ReLU): Terlihat jelas efek 'patahan' matematisnya. Semua titik merah (sinyal negatif) dipaksa rata ke lantai 0, sementara titik hijau dipertahankan nilainya. Patahan inilah yang membuat model mampu mengenali pola data yang kompleks.*")
+        st.caption("🔹 *Grafik Non-Linear: Efek 'patahan' ReLU. Titik merah (negatif) dipaksa rata menjadi 0, sedangkan titik hijau (positif) tetap dipertahankan.*")
         time.sleep(1)
         
     st.markdown("---")
