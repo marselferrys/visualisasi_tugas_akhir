@@ -178,9 +178,9 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         # ==========================================================
         
         # Logika rujukan Hybrid 
-        if 0.1 <= rata_rata <= 0.9:
-            st.error(f"🚨 **Skor {rata_rata:.2f} bersifat Ambigu!**")
-        elif rata_rata > 0.9:
-            st.success("👩 **Perempuan.**")
-        else:
-            st.info("👨 **Laki-laki.**")
+        # if 0.1 <= rata_rata <= 0.9:
+        #    st.error(f"🚨 **Skor {rata_rata:.2f} bersifat Ambigu!**")
+        # elif rata_rata > 0.9:
+        #    st.success("👩 **Perempuan.**")
+        # else:
+        #    st.info("👨 **Laki-laki.**")
