@@ -74,7 +74,7 @@ if tombol_analisis and nama_input:
     # ================= LAYER 2 =================
     col1, col2 = st.columns([1, 2.5])
     with col1:
-        st.info("📍 **Layer 2: Character Embedding**\n\nMengubah setiap indeks menjadi vektor padat 128-dimensi menggunakan *Lookup Table*.")
+        st.info("📍 **Layer 2: Character Embedding**\n\nMengubah setiap indeks menjadi vektor padat 128 dimensi menggunakan *Lookup Table*.")
     with col2:
         # Menetapkan seed agar nilai acak tetap konsisten untuk kebutuhan visualisasi
         np.random.seed(42)
@@ -242,6 +242,50 @@ if tombol_analisis and nama_input:
             # 2. Ekstraksi out_conf (indeks 1) dan pastikan formatnya float (angka desimal)
             probabilitas_api = float(result[1])
 
+            # ==========================================================
+            # BAGIAN BARU: VISUALISASI CARA KERJA SIGMOID
+            # ==========================================================
+            st.markdown("---")
+            st.write("### 1. Tahap Pemampatan (Linear Combination)")
+            st.markdown("Ke-64 fitur dari layer Dense sebelumnya dikalikan dengan matriks bobot ($W$), dijumlahkan, dan ditambah nilai bias ($b$) untuk menghasilkan satu angka mentah yang disebut **Logit ($Z$)**.")
+            
+            # Menghitung Inverse Sigmoid untuk mendapatkan nilai Z yang akurat
+            # Normalisasi jika probabilitas_api berbentuk persentase (misal 99.90) atau desimal (0.999)
+            p_calc = probabilitas_api / 100.0 if probabilitas_api > 1.0 else probabilitas_api
+            p_safe = max(min(p_calc, 0.9999), 0.0001) # Mencegah error log(0)
+            z_score = np.log(p_safe / (1 - p_safe))
+            
+            st.latex(rf"Z = \sum_{{i=1}}^{{64}} (w_i \cdot x_i) + b \approx {z_score:.2f}")
+            time.sleep(1)
+            
+            st.write("### 2. Aktivasi Sigmoid (Probabilitas)")
+            st.markdown("Angka Logit ($Z$) tidak bermakna secara persentase. Fungsi Sigmoid digunakan untuk memetakan nilai $Z$ tersebut secara melengkung ke rentang skala probabilitas pasti antara $0$ hingga $1$.")
+            st.latex(r"P = \frac{1}{1 + e^{-Z}}")
+            
+            # Membuat Grafik Kurva Sigmoid Matplotlib
+            fig, ax = plt.subplots(figsize=(8, 4))
+            x_vals = np.linspace(-10, 10, 100)
+            y_vals = 1 / (1 + np.exp(-x_vals))
+            
+            # Menggambar garis kurva dan sumbu pembatas
+            ax.plot(x_vals, y_vals, label="Kurva Sigmoid", color="#2e8b57", linewidth=2)
+            ax.axhline(y=0.5, color='r', linestyle='--', alpha=0.5, label="Batas Keputusan (0.5)")
+            ax.axvline(x=0, color='gray', linestyle='-', alpha=0.3)
+            
+            # Plot titik hasil prediksi model
+            warna_titik = '#ff4b4b' if gender_api_result == "M" else '#00cc66'
+            ax.scatter([z_score], [p_calc], color=warna_titik, s=150, zorder=5, label="Titik Prediksi Model")
+            
+            ax.set_title(f"Pemetaan Nilai Z ({z_score:.2f}) menjadi Probabilitas ({p_calc:.4f})")
+            ax.set_xlabel("Nilai Z Mentah (Logit)")
+            ax.set_ylabel("Probabilitas (P)")
+            ax.legend()
+            ax.grid(True, alpha=0.2)
+            
+            st.pyplot(fig)
+            st.markdown("---")
+            # ==========================================================
+
             # Tampilkan hasil akhir klasifikasi
             if gender_api_result == "F":
                 st.success("### Perempuan 👩")
@@ -259,4 +303,3 @@ if tombol_analisis and nama_input:
             
     st.balloons()
             
-    st.balloons()
