@@ -130,7 +130,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         st.latex(rf"\sum \text{{Skor MLE}} = {rumus_rata_rata}")
 
         # Jumlah data
-        st.latex(rf"n = {len(skor_tokens)}")
+        # st.latex(rf"n = {len(skor_tokens)}")
 
         # Perhitungan akhir
         st.latex(rf"\text{{Rata-rata}} = \frac{{{rumus_rata_rata}}}{{{len(skor_tokens)}}} = {rata_rata:.2f}")
