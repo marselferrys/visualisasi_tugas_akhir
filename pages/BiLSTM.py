@@ -115,9 +115,12 @@ if tombol_analisis and nama_input:
         st.write("🔄 **Proses Forward & Backward berjalan...**")
         progress_bar = st.progress(0)
         
-        for i in range(255):
+        total_step = 255
+
+        for i in range(total_step):
             time.sleep(0.01)
-            progress_bar.progress(i + 1)
+            progress = int((i + 1) / total_step * 100)
+            progress_bar.progress(progress)
 
         st.write(f"**Bentuk Matriks Hasil BiLSTM layer:** `{MAX_LEN} × 256`, **Concat 2 LSTM Layer (128+128)**")
         # Membuat matriks dummy sesuai dimensi asli
