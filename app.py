@@ -16,7 +16,7 @@ st.write("Silakan pilih menu di **Sidebar sebelah kiri** untuk memulai simulasi,
 
 col1, col2 = st.columns(2)
 with col1:
-    st.info("**Modul 1: Maximum Likelihood Estimation (MLE)**\n\nFilter tahap pertama menggunakan probabilitas kamus nama berdasarkan kata (Fast-Path).")
+    st.info("**Modul 1: Maximum Likelihood Estimation (MLE)**\n\nFilter tahap pertama mmenggunakan skor probabilitas yang dihitung dari frekuensi kemunculan token nama dalam tabel frekuensi token nama (korpus) (Fast-Path).")
     if st.button("📊 Masuk ke Halaman MLE", use_container_width=True):
         st.switch_page("pages/MLE.py") # Melompat ke file MLE
 
