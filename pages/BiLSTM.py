@@ -113,7 +113,7 @@ if tombol_analisis and nama_input:
         
     st.markdown("---")
 
-    # ================= LAYER 4 (BARU: DROPOUT 1) =================
+    # ================= LAYER 4 (DROPOUT 1) =================
     with col1:
         st.error("📍 **Layer 4: Dropout (30%)**\n\nLapisan regularisasi pertama. Menonaktifkan 30% koneksi neuron secara acak untuk mencegah model menghafal data (Overfitting).")
     with col2:
