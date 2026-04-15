@@ -22,14 +22,11 @@ def load_mle_database():
         # 2. Hitung Skor Probabilitas
         df['skor'] = (df['Freq_P'] / df['total']).fillna(0.5)
 
-        # filter minimum freq (min_freq>3)
-        df = df[df['total'] > 3]
-        
-        # 3. Jadikan 'token' sebagai index agar pencarian sangat cepat
-        df_indexed = df.set_index('token')
-        
-        # Mengembalikan seluruh dataframe, bukan cuma dictionary
-        return df_indexed
+        df_full = df.copy()  # simpan semua data
+
+        df_filtered = df[df['total'] > 3]  # untuk MLE
+
+        return df_full.set_index('token'), df_filtered.set_index('token')
         
     except FileNotFoundError:
         st.error("File 'freq_mle_table.xlsx' tidak ditemukan!")
@@ -45,7 +42,7 @@ st.title("📊 Simulator Maximum Likelihood Estimation (MLE)")
 st.markdown("---")
 
 # Memuat tabel frekuensi token nama dari excel
-df_frekuensi = load_mle_database()
+df_full, df_frekuensi = load_mle_database()
 
 nama = st.text_input("Masukkan Nama Lengkap:", value=st.session_state.nama_input).lower()
 st.session_state.nama_input = nama
@@ -64,11 +61,13 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         st.write("Sistem mencari token-token tersebut di dalam **tabel frekuensi token nama** `min_freq > 3`.")
         
         # Mencari kata yang ada di database untuk ditampilkan di tabel
-        tokens_ditemukan = [t for t in tokens if t in df_frekuensi.index]
+        tokens_ditemukan = [t for t in tokens if t in df_full.index]
         
         if tokens_ditemukan:
             # Mengambil baris data khusus untuk token yang diketik user
-            df_tampil = df_frekuensi.loc[tokens_ditemukan, ['Freq_L', 'Freq_P', 'total', 'skor']]
+            df_tampil = df_full.loc[tokens_ditemukan, ['Freq_L', 'Freq_P', 'total', 'skor']]
+            df_tampil['status'] = df_tampil['total'].apply(
+                                  lambda x: "Dipakai (≥3)" if x > 3 else "Tidak dipakai (<3)")
             
             # Menampilkan tabel dengan highlight pada kolom skor
             st.dataframe(
