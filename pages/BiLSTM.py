@@ -49,6 +49,8 @@ if tombol_analisis and nama_input:
                     'o': 15, 'f': 16, 'k': 17, 'g': 18, 'p': 19, 'w': 20, 'b': 21,
                     'z': 22, 'v': 23, 'j': 24, 'c': 25, 'q': 26, 'x': 27, '|PAD|': 0}
 
+        st.dataframe(char_dict, height=200, use_container_width=True)
+        st.caption(f"Menampilkan Indeks Karakter yang digunakan.")
         chars = list(nama_input.lower())
         indeks = [char_dict.get(c, 0) for c in chars]
 
@@ -83,7 +85,8 @@ if tombol_analisis and nama_input:
         # bobot_asli = np.random.randn(ukuran_kamus, dimensi_embedding)
 
         st.write(f"Lookup Tabel yang digunakan: `{ukuran_kamus} karakter × {dimensi_embedding} dimensi`")
-        st.dataframe(bobot_asli.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
+        df_bobot = pd.DataFrame(bobot_asli)
+        st.dataframe(df_bobot.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
         st.caption(f"Menampilkan Tabel Lookup yang digunakan untuk membentuk matriks representasi nama.")
         # Mengambil baris dari bobot_asli berdasarkan indeks_pad
         dummy_embedding = np.array([bobot_asli[idx] for idx in indeks_pad])
