@@ -92,7 +92,7 @@ if tombol_analisis and nama_input:
         st.caption(f"Menampilkan Tabel Lookup yang digunakan untuk membentuk matriks representasi nama.")
         # Mengambil baris dari bobot_asli berdasarkan indeks_pad
         dummy_embedding = np.array([bobot_asli[idx] for idx in indeks_pad])
-        st.write(f"Bentuk Matriks dari {nama_input} Pada Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
+        st.write(f"Bentuk Matriks dari `{nama_input}` Pada Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
 
         # Matriks
         df_emb = pd.DataFrame(dummy_embedding)
