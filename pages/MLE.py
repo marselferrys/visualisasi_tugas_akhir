@@ -21,6 +21,9 @@ def load_mle_database():
         
         # 2. Hitung Skor Probabilitas
         df['skor'] = (df['Freq_P'] / df['total']).fillna(0.5)
+
+        # filter minimum freq (min_freq>3)
+        df = df[df['total'] > 3]
         
         # 3. Jadikan 'token' sebagai index agar pencarian sangat cepat
         df_indexed = df.set_index('token')
@@ -58,7 +61,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         
         st.markdown("---")
         st.write("### 2. Ekstraksi Data dari Tabel Frekuensi (Korpus)")
-        st.write("Sistem mencari token-token tersebut di dalam *tabel* frekuensi token nama.")
+        st.write("Sistem mencari token-token tersebut di dalam **tabel frekuensi token nama** `min_freq > 3`.")
         
         # Mencari kata yang ada di database untuk ditampilkan di tabel
         tokens_ditemukan = [t for t in tokens if t in df_frekuensi.index]
