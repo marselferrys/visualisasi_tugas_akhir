@@ -158,7 +158,7 @@ if tombol_analisis and nama_input:
         # Menghasilkan angka acak antara -1 hingga 1 agar terdapat nilai negatif
         raw_dense = np.random.uniform(-1, 1, (1, 64))
         
-        st.write("Dense Layer (64)")
+        st.write("Fully Connected Layer (Dense(64))")
         st.write("1️⃣ **Raw Dense Output:** `1 × 64`")
             
         st.dataframe(pd.DataFrame(raw_dense).style.map(color_negative_red))
