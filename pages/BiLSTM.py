@@ -225,7 +225,7 @@ if tombol_analisis and nama_input:
     with col1:
         st.success("📍 **Layer 8: Output Layer (Sigmoid)**\n\nMemampatkan ke-64 sisa fitur menjadi 1 neuron tunggal. Menghasilkan probabilitas 0 hingga 1.")
     with col2:
-        st.write("**Hasil Klasifikasi...**")
+        st.write(f"**Hasil Klasifikasi...**")
         
         try:
             # Memanggil Client Hugging Face secara langsung
@@ -247,7 +247,7 @@ if tombol_analisis and nama_input:
             # VISUALISASI CARA KERJA SIGMOID
             # ==========================================================
             st.markdown("---")
-            st.write("** 1. Tahap Pemampatan (Linear Combination)**")
+            st.write(f"** 1. Tahap Pemampatan (Linear Combination)**")
             st.markdown("Ke-64 fitur dari layer Dense sebelumnya dikalikan dengan matriks bobot ($W$), dijumlahkan, dan ditambah nilai bias ($b$) untuk menghasilkan satu angka mentah yang disebut **Logit ($Z$)**.")
             
             # Menghitung Inverse Sigmoid untuk mendapatkan nilai Z yang akurat
@@ -259,7 +259,7 @@ if tombol_analisis and nama_input:
             st.latex(rf"Z = \sum_{{i=1}}^{{64}} (w_i \cdot x_i) + b \approx {z_score:.2f}")
             time.sleep(1)
             
-            st.write("** 2. Fungsi Aktivasi Sigmoid (Probabilitas)**")
+            st.write(f"** 2. Fungsi Aktivasi Sigmoid (Probabilitas)**")
             st.markdown("Angka Logit ($Z$) tidak bermakna secara persentase. Fungsi Sigmoid digunakan untuk memetakan nilai $Z$ tersebut secara melengkung ke rentang skala probabilitas pasti antara $0$ hingga $1$.")
             st.latex(r"P = \frac{1}{1 + e^{-Z}}")
             
