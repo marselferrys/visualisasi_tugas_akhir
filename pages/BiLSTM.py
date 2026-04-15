@@ -247,11 +247,10 @@ if tombol_analisis and nama_input:
             # VISUALISASI CARA KERJA SIGMOID
             # ==========================================================
             st.markdown("---")
-            st.write(f"** 1. Tahap Pemampatan (Linear Combination)**")
+            st.write("**1. Tahap Pemampatan (Linear Combination)**")
             st.markdown("Ke-64 fitur dari layer Dense sebelumnya dikalikan dengan matriks bobot ($W$), dijumlahkan, dan ditambah nilai bias ($b$) untuk menghasilkan satu angka mentah yang disebut **Logit ($Z$)**.")
             
             # Menghitung Inverse Sigmoid untuk mendapatkan nilai Z yang akurat
-            # Normalisasi jika probabilitas_api berbentuk persentase (misal 99.90) atau desimal (0.999)
             p_calc = probabilitas_api / 100.0 if probabilitas_api > 1.0 else probabilitas_api
             p_safe = max(min(p_calc, 0.9999), 0.0001) # Mencegah error log(0)
             z_score = np.log(p_safe / (1 - p_safe))
@@ -259,7 +258,7 @@ if tombol_analisis and nama_input:
             st.latex(rf"Z = \sum_{{i=1}}^{{64}} (w_i \cdot x_i) + b \approx {z_score:.2f}")
             time.sleep(1)
             
-            st.write(f"** 2. Fungsi Aktivasi Sigmoid (Probabilitas)**")
+            st.write("**2. Fungsi Aktivasi Sigmoid (Probabilitas)**")
             st.markdown("Angka Logit ($Z$) tidak bermakna secara persentase. Fungsi Sigmoid digunakan untuk memetakan nilai $Z$ tersebut secara melengkung ke rentang skala probabilitas pasti antara $0$ hingga $1$.")
             st.latex(r"P = \frac{1}{1 + e^{-Z}}")
             
