@@ -50,7 +50,9 @@ if tombol_analisis and nama_input:
                     'z': 22, 'v': 23, 'j': 24, 'c': 25, 'q': 26, 'x': 27, '|PAD|': 0}
 
         st.write(f"**Menampilkan Tabel Indeks Karakter:**")
-        st.dataframe(sorted(char_dict), height=200, use_container_width=True)
+        df_dict = pd.DataFrame(list(char_dict.items()), columns=["Karakter", "Indeks"])
+        df_dict = df_dict.sort_values(by="Indeks")
+        st.dataframe(df_dict, height=200, use_container_width=True)
         chars = list(nama_input.lower())
         indeks = [char_dict.get(c, 0) for c in chars]
 
