@@ -85,8 +85,8 @@ if tombol_analisis and nama_input:
         dummy_embedding = np.array([bobot_asli[idx] for idx in indeks_pad])
         
         st.write(f"Bentuk Matriks dari Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
-        
-        # Menampilkan 10 kolom pertama untuk keterbacaan
+
+        # Matriks
         df_emb = pd.DataFrame(dummy_embedding)
         st.dataframe(df_emb.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
         
@@ -120,7 +120,7 @@ if tombol_analisis and nama_input:
         st.write(f"Bentuk Matriks Hasil BiLSTM layer: `{MAX_LEN} × 256`, Concat 2 LSTM Layer (128+128)")
         
         # Membuat matriks dummy sesuai dimensi asli
-        dummy_bilstm_out = np.random.rand(MAX_LEN, 256)
+        dummy_bilstm_out = np.random.randn(MAX_LEN, 256)
         
         st.dataframe(pd.DataFrame(dummy_bilstm_out).style.background_gradient(cmap='Blues'), height=200)
         
