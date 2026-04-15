@@ -51,7 +51,7 @@ if tombol_analisis and nama_input:
 
         st.write(f"**Menampilkan Tabel Indeks Karakter:**")
         df_dict = pd.DataFrame(list(char_dict.items()), columns=["Karakter", "Indeks Numerik"])
-        df_dict = df_dict.sort_values(by="Indeks")
+        df_dict = df_dict.sort_values(by="Indeks Numerik")
         st.dataframe(df_dict, height=200, use_container_width=True)
         chars = list(nama_input.lower())
         indeks = [char_dict.get(c, 0) for c in chars]
