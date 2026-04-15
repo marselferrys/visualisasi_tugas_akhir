@@ -146,7 +146,7 @@ if tombol_analisis and nama_input:
         st.bar_chart(dummy_pooling[0][:]) 
         st.caption("*Mengambil nilai fitur paling dominan dari tiap karakter*")
         st.write("2️⃣ **Bentuk Array 1D:** `1 × 256`")
-        st.dataframe(pd.DataFrame(dummy_pooling).style.background_gradient(cmap='Blues'))
+        st.dataframe(pd.DataFrame(dummy_pooling).style.map(color_negative_red))
         time.sleep(1)
         
     st.markdown("---")
