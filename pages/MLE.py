@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 import pandas as pd
+import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Simulasi MLE", page_icon="📊", layout="wide")
 
