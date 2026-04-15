@@ -301,6 +301,7 @@ if tombol_analisis and nama_input:
             st.write("**2. Fungsi Aktivasi Sigmoid (Probabilitas)**")
             st.markdown("Angka Logit ($Z$) tidak bermakna secara persentase. Fungsi Sigmoid digunakan untuk memetakan nilai $Z$ tersebut secara melengkung ke rentang skala probabilitas pasti antara $0$ hingga $1$.")
             st.latex(r"P = \frac{1}{1 + e^{-Z}}")
+            st.latex(f"P = \\frac{{1}}{{1 + e^{{-{z_score:.2f}}}}}")
             
             # Membuat Grafik Kurva Sigmoid Matplotlib
             fig, ax = plt.subplots(figsize=(8, 4))
