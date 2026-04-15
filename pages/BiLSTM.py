@@ -114,9 +114,16 @@ if tombol_analisis and nama_input:
         st.write("BiLSTM Layer")
         st.write("🔄 **Proses Forward & Backward berjalan...**")
         progress_bar = st.progress(0)
-        for i in range(100):
+        
+        for i in range(255):
             time.sleep(0.01)
             progress_bar.progress(i + 1)
+
+        st.write(f"**Bentuk Matriks Hasil BiLSTM layer:** `{MAX_LEN} × 256`, **Concat 2 LSTM Layer (128+128)**")
+        # Membuat matriks dummy sesuai dimensi asli
+        dummy_bilstm_out = np.random.uniform(-1, 1, (MAX_LEN, 256))
+        # dummy_bilstm_out = np.random.randn(MAX_LEN, 256)
+        st.dataframe(pd.DataFrame(dummy_bilstm_out).style.background_gradient(cmap='Blues'), height=200)
         st.success(f"Konteks Dua Arah Terekstrak! (Dimensi output: {MAX_LEN} x 256)")
         time.sleep(1)
         
@@ -127,14 +134,6 @@ if tombol_analisis and nama_input:
     with col1:
         st.error("📍 **Layer 4: Dropout (30%)**\n\nLapisan regularisasi pertama. Menonaktifkan 30% koneksi neuron secara acak untuk mencegah model menghafal data (Overfitting).")
     with col2:
-        st.write(f"**Bentuk Matriks Hasil BiLSTM layer:** `{MAX_LEN} × 256`, **Concat 2 LSTM Layer (128+128)**")
-        
-        # Membuat matriks dummy sesuai dimensi asli
-        dummy_bilstm_out = np.random.uniform(-1, 1, (MAX_LEN, 256))
-        # dummy_bilstm_out = np.random.randn(MAX_LEN, 256)
-        
-        st.dataframe(pd.DataFrame(dummy_bilstm_out).style.background_gradient(cmap='Blues'), height=200)
-        
         # Matikan 30% sel secara acak
         st.write(f"**Bentuk Matriks setelah dropout layer 1:** `{MAX_LEN} × 256`")
         mask_dropout_1 = np.random.rand(MAX_LEN, 256) > 0.3 
