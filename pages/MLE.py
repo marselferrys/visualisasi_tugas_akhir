@@ -137,7 +137,9 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
 
         # Perhitungan akhir
         st.latex(rf"\text{{Rata-rata}} = \frac{{{rumus_rata_rata}}}{{{len(skor_tokens)}}} = {rata_rata:.2f}")
-        st.success(f"MLE Score untuk nama **{nama}** = **{rata_rata:.2f}**")
+        st.markdown(f"""<div style="background-color:#d4edda; padding:15px; border-radius:10px;">
+        <b>MLE Score untuk nama {nama} = {rata_rata:.2f}</b></div>
+        """,unsafe_allow_html=True)
         st.caption("Probability Threshold: Perempuan > 0.90 | Laki-laki < 0.10 | Ambigu 0.10 - 0.90")
 
         # ==========================================================
