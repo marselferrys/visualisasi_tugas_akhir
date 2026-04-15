@@ -125,7 +125,7 @@ if tombol_analisis and nama_input:
     with col1:
         st.error("📍 **Layer 4: Dropout (30%)**\n\nLapisan regularisasi pertama. Menonaktifkan 30% koneksi neuron secara acak untuk mencegah model menghafal data (Overfitting).")
     with col2:
-        st.write(f"**Bentuk Matriks Hasil BiLSTM layer:** `{MAX_LEN} × 256`, Concat 2 LSTM Layer (128+128)")
+        st.write(f"**Bentuk Matriks Hasil BiLSTM layer:** `{MAX_LEN} × 256`, **Concat 2 LSTM Layer (128+128)**")
         
         # Membuat matriks dummy sesuai dimensi asli
         dummy_bilstm_out = np.random.uniform(-1, 1, (MAX_LEN, 256))
