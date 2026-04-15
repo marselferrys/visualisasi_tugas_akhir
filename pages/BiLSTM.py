@@ -129,7 +129,8 @@ if tombol_analisis and nama_input:
         # Matikan 30% sel secara acak
         st.write(f"Bentuk Matriks setelah dropout layer 1: `{MAX_LEN} × 256`")
         mask_dropout_1 = np.random.rand(MAX_LEN, 256) > 0.3 
-        dummy_dropout_1 = dummy_bilstm_out * mask_dropout_1
+        # dummy_dropout_1 = dummy_bilstm_out * mask_dropout_1
+        dummy_dropout_1 = np.where(mask_dropout_1, dummy_bilstm_out, 0.0)
         
         st.dataframe(pd.DataFrame(dummy_dropout_1).style.map(highlight_dropout), height=200)
         st.caption(f"*Cuplikan matriks {MAX_LEN}x256. Sel berlatar merah (0.000) adalah neuron yang dinonaktifkan.*")
@@ -192,7 +193,8 @@ if tombol_analisis and nama_input:
         st.write("Bentuk Array setelah Dropout Layer 2: `1 × 64`")
         # Matikan 30% dari 64 neuron
         mask_dropout_2 = np.random.rand(1, 64) > 0.3 
-        dummy_dropout_2 = relu_dense * mask_dropout_2
+        # dummy_dropout_2 = relu_dense * mask_dropout_2
+        dummy_dropout_2 = np.where(mask_dropout_2, relu_dense, 0.0)
 
         st.dataframe(pd.DataFrame(dummy_dropout_2).style.map(highlight_dropout))
         st.caption("*Sel berlatar merah (0.000) adalah neuron yang dinonaktifkan.*")
