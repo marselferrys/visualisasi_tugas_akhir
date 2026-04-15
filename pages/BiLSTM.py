@@ -49,8 +49,8 @@ if tombol_analisis and nama_input:
                     'o': 15, 'f': 16, 'k': 17, 'g': 18, 'p': 19, 'w': 20, 'b': 21,
                     'z': 22, 'v': 23, 'j': 24, 'c': 25, 'q': 26, 'x': 27, '|PAD|': 0}
 
+        st.write(f"**MenampilkaTabel Indeks Karakter:**")
         st.dataframe(char_dict, height=200, use_container_width=True)
-        st.caption(f"Menampilkan Indeks Karakter yang digunakan.")
         chars = list(nama_input.lower())
         indeks = [char_dict.get(c, 0) for c in chars]
 
