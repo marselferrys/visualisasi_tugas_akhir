@@ -81,11 +81,13 @@ if tombol_analisis and nama_input:
         dimensi_embedding = 128
         bobot_asli = np.random.uniform(-1, 1, (ukuran_kamus, dimensi_embedding))
         # bobot_asli = np.random.randn(ukuran_kamus, dimensi_embedding)
-        
+
+        st.write(f"Lookup Tabel yang digunakan: `{ukuran_kamus} karakter × {dimensi_embedding} dimensi`")
+        st.dataframe(bobot_asli.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
+        st.caption(f"Menampilkan Tabel Lookup yang digunakan untuk membentuk matriks representasi nama.")
         # Mengambil baris dari bobot_asli berdasarkan indeks_pad
         dummy_embedding = np.array([bobot_asli[idx] for idx in indeks_pad])
-        
-        st.write(f"Bentuk Matriks dari Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
+        st.write(f"Bentuk Matriks dari {nama_input} Pada Character Embedding Layer: `{MAX_LEN} karakter × 128 dimensi`")
 
         # Matriks
         df_emb = pd.DataFrame(dummy_embedding)
