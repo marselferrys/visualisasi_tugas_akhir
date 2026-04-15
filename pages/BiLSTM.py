@@ -49,7 +49,7 @@ if tombol_analisis and nama_input:
                     'o': 15, 'f': 16, 'k': 17, 'g': 18, 'p': 19, 'w': 20, 'b': 21,
                     'z': 22, 'v': 23, 'j': 24, 'c': 25, 'q': 26, 'x': 27, '|PAD|': 0}
 
-        st.write(f"**Menampilkan Tabel Indeks Karakter: `{len(char_dict)} karakter`**")
+        st.write(f"**Menampilkan Tabel Indeks Karakter:** `{len(char_dict)} karakter`")
         df_dict = pd.DataFrame(list(char_dict.items()), columns=["Karakter", "Indeks Numerik"])
         df_dict = df_dict.sort_values(by="Indeks Numerik")
         st.dataframe(df_dict, height=200, use_container_width=True)
@@ -65,7 +65,7 @@ if tombol_analisis and nama_input:
             # Menggunakan '|PAD|' sebagai penanda visual di tabel
             chars_pad = chars + ['|PAD|'] * selisih
 
-        st.write(f"**Panjang Nama Asli:** {len(chars)} karakter")
+        st.write(f"**Panjang Nama Asli:** `{len(chars)} karakter`")
         df_pad = pd.DataFrame({"Karakter": chars_pad, "Indeks Numerik": indeks_pad})
         st.dataframe(df_pad, height=200, use_container_width=True)
         time.sleep(1)
@@ -86,7 +86,7 @@ if tombol_analisis and nama_input:
         bobot_asli = np.random.uniform(-1, 1, (ukuran_kamus, dimensi_embedding))
         # bobot_asli = np.random.randn(ukuran_kamus, dimensi_embedding)
 
-        st.write(f"Lookup Tabel yang digunakan: `{ukuran_kamus} karakter × {dimensi_embedding} dimensi`")
+        st.write(f"**Lookup Tabel yang digunakan:** `{ukuran_kamus} karakter × {dimensi_embedding} dimensi`")
         df_bobot = pd.DataFrame(bobot_asli)
         st.dataframe(df_bobot.iloc[:, :].style.background_gradient(cmap='Blues'), height=200)
         st.caption(f"Menampilkan Tabel Lookup yang digunakan untuk membentuk matriks representasi nama.")
