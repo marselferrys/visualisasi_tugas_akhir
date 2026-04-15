@@ -198,6 +198,9 @@ if tombol_analisis and nama_input:
 
         st.dataframe(pd.DataFrame(dummy_dropout_2).style.map(highlight_dropout))
         st.caption("*Sel berlatar merah (0.000) adalah neuron yang dinonaktifkan.*")
+
+        st.line_chart(dummy_dropout_2[0])
+        st.caption("*Grafik setelah dropout layer 2: kembali menonaktifkan 30% koneksi dari 64 neuron.*")
         time.sleep(1)
 
     st.markdown("---")
