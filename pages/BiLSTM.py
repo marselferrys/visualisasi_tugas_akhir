@@ -49,7 +49,7 @@ if tombol_analisis and nama_input:
                     'o': 15, 'f': 16, 'k': 17, 'g': 18, 'p': 19, 'w': 20, 'b': 21,
                     'z': 22, 'v': 23, 'j': 24, 'c': 25, 'q': 26, 'x': 27, '|PAD|': 0}
 
-        st.write(f"**Menampilkan Tabel Indeks Karakter:**")
+        st.write(f"**Menampilkan Tabel Indeks Karakter: `{ukuran_kamus} karakter`**")
         df_dict = pd.DataFrame(list(char_dict.items()), columns=["Karakter", "Indeks Numerik"])
         df_dict = df_dict.sort_values(by="Indeks Numerik")
         st.dataframe(df_dict, height=200, use_container_width=True)
