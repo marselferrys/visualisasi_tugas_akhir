@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import time
 from gradio_client import Client
+import matplotlib.pyplot as plt
 
 # Konfigurasi Halaman Web
 st.set_page_config(page_title="Visualisasi BiLSTM - Marchel", layout="wide")
