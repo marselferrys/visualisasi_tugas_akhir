@@ -125,7 +125,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         rata_rata = sum(skor_tokens) / len(skor_tokens)
         
         # Menampilkan rumus rata-rata
-        rumus_rata_rata = " + ".join([f"{s:.2f}" for s in skor_tokens])
+        rumus_rata_rata = " + ".join([f"{s:.4f}" for s in skor_tokens])
         # Tampilkan penjumlahan skor
         st.latex(rf"\sum \text{{Skor MLE}} = {rumus_rata_rata}")
 
