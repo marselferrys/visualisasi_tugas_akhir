@@ -35,9 +35,8 @@ def color_negative_red(val):
 
 if tombol_analisis and nama_input:
     st.markdown(f"### Menganalisis nama: **{nama_input}**")
-    
-    col1, col2 = st.columns([1, 2])
     MAX_LEN = 25
+    col1, col2 = st.columns([1, 2.5])
     
     # ================= LAYER 1 =================
     with col1:
@@ -73,6 +72,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
     
     # ================= LAYER 2 =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         st.info("📍 **Layer 2: Character Embedding**\n\nMengubah setiap indeks menjadi vektor padat 128-dimensi menggunakan *Lookup Table*.")
     with col2:
@@ -107,6 +107,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
     
     # ================= LAYER 3 =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         st.warning("📍 **Layer 3: Bidirectional LSTM**\n\nMemproses matriks dari dua arah secara paralel (maju dan mundur). Menghasilkan representasi hidden state 256 dimensi.")
     with col2:
@@ -122,6 +123,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
 
     # ================= LAYER 4 (DROPOUT 1) =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         st.error("📍 **Layer 4: Dropout (30%)**\n\nLapisan regularisasi pertama. Menonaktifkan 30% koneksi neuron secara acak untuk mencegah model menghafal data (Overfitting).")
     with col2:
@@ -146,6 +148,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
     
     # ================= LAYER 5 =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         # Menggunakan variabel MAX_LEN agar teks dinamis menyesuaikan panjang padding
         st.info(f"📍 **Layer 5: Global Max Pooling 1D**\n\nMemindai seluruh {MAX_LEN} karakter dan mencomot nilai fitur yang paling dominan saja.")
@@ -162,6 +165,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
     
     # ================= LAYER 6 =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         st.info("📍 **Layer 6: Dense Layer (64)**\n\nFully Connected Layer dengan aktivasi ReLU. Mengombinasikan fitur-fitur penting menjadi 64 titik penalaran tinggi.")
     with col2:
@@ -194,6 +198,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
 
     # ================= LAYER 7 (DROPOUT 2) =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         st.error("📍 **Layer 7: Dropout (30%)**\n\nKembali menonaktifkan 30% koneksi dari 64 neuron Dense sebelum tahap klasifikasi akhir.")
     with col2:
@@ -213,6 +218,7 @@ if tombol_analisis and nama_input:
     st.markdown("---")
     
     # ================= LAYER 8 =================
+    col1, col2 = st.columns([1, 2.5])
     with col1:
         st.success("📍 **Layer 8: Output Layer (Sigmoid)**\n\nMemampatkan ke-64 sisa fitur menjadi 1 neuron tunggal. Menghasilkan probabilitas 0 hingga 1.")
     with col2:
