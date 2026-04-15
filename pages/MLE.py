@@ -170,7 +170,7 @@ if st.button("🧮 Simulasikan Algoritma MLE"):
         ax.set_ylim(0, 1)
         ax.set_yticks([]) # Sembunyikan sumbu Y karena ini hanya garis 1 dimensi
         ax.set_xticks([0.0, 0.10, 0.50, 0.90, 1.0])
-        ax.set_title("Peta Titik Jatuh Keputusan MLE (Decision Boundary)", pad=15)
+        ax.set_title("Titik Jatuh Keputusan (Decision Boundary)", pad=15)
         ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=3)
         
         st.pyplot(fig)
