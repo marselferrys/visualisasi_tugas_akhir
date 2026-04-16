@@ -37,6 +37,15 @@ def color_negative_red(val):
 if tombol_analisis and nama_input:
     st.markdown(f"### Menganalisis nama: `{nama_input}`")
     MAX_LEN = 25
+
+    # Memanggil Client Hugging Face secara langsung
+    client = Client("marselferrys/indo_name-gender-prediction")
+            
+    # Menembak API. Hasil kembalian berupa tuple
+    result = client.predict(
+            nama_input, 
+            api_name="/predict")
+
     col1, col2 = st.columns([1, 2.5])
     
     # ================= LAYER 1 =================
@@ -268,15 +277,7 @@ if tombol_analisis and nama_input:
         st.write(f"**Hasil Klasifikasi...**")
         
         try:
-            # Memanggil Client Hugging Face secara langsung
-            client = Client("marselferrys/indo_name-gender-prediction")
-            
-            # Menembak API. Hasil kembalian berupa tuple
-            result = client.predict(
-                nama_input, 
-                api_name="/predict"
-            )
-            
+                        
             # 1. Ekstraksi out_gender (indeks 0) dan bersihkan teksnya
             gender_api_result = str(result[0]).strip().upper()
             
