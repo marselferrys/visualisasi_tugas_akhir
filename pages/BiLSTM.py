@@ -284,6 +284,17 @@ if tombol_analisis and nama_input:
             # 2. Ekstraksi out_conf (indeks 1) dan pastikan formatnya float (angka desimal)
             probabilitas_api = float(result[1])
 
+            # Tampilkan hasil akhir klasifikasi
+            if gender_api_result == "F":
+                st.success("### Perempuan 👩")
+            elif gender_api_result == "M":
+                st.info("### Laki-laki 👨")
+            else:
+                st.warning(f"### Kesimpulan: Tidak Diketahui ({gender_api_result})")
+            
+            # Tampilkan metrik probabilitas asli dari model
+            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.2f}")
+
             # ==========================================================
             # VISUALISASI CARA KERJA SIGMOID
             # ==========================================================
@@ -326,19 +337,7 @@ if tombol_analisis and nama_input:
             
             st.pyplot(fig)
             st.markdown("---")
-            # ==========================================================
-
-            # Tampilkan hasil akhir klasifikasi
-            if gender_api_result == "F":
-                st.success("### Perempuan 👩")
-            elif gender_api_result == "M":
-                st.info("### Laki-laki 👨")
-            else:
-                st.warning(f"### Kesimpulan: Tidak Diketahui ({gender_api_result})")
-            
-            # Tampilkan metrik probabilitas asli dari model
-            st.metric(label="Skor Probabilitas", value=f"{probabilitas_api:.2f}")
-                
+            # ==========================================================           
         except Exception as e:
             # Menampilkan pesan error jika terjadi masalah koneksi ke server HF
             st.error(f"Gagal menghubungi model di Hugging Face. Detail: {e}")
