@@ -35,7 +35,7 @@ def color_negative_red(val):
     return 'color: #ff4b4b; font-weight: bold;' if val < 0 else ''
 
 if tombol_analisis and nama_input:
-    st.markdown(f"### Menganalisis nama: **{nama_input}**")
+    st.markdown(f"### Menganalisis nama: `{nama_input}`")
     MAX_LEN = 25
     col1, col2 = st.columns([1, 2.5])
     
